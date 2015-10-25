@@ -46,15 +46,6 @@ class Printminion_Privatbankrates_Model_Currency_Import_Privatbankrates extends 
     {
         $this->_httpClient = new Varien_Http_Client();
 
-//        $app_id = Mage::getStoreConfig('currency/pm_privatbankrates/app_id');
-//        if (!$app_id) {
-//            $e = new Exception(Mage::helper('pm_privatbankrates')->__('No Privatbankrates App Id set!'));
-//            Mage::logException($e);
-//            throw $e;
-//        }
-//
-//        $url = str_replace('{{APP_ID}}', $app_id, $this->_url);
-
         $url = $this->_url;
 
         $response = $this->_httpClient
@@ -71,8 +62,19 @@ class Printminion_Privatbankrates_Model_Currency_Import_Privatbankrates extends 
             $response = Zend_Json::decode($response);
             if (array_key_exists('error', $response)) {
                 $this->_messages[] = Mage::helper('pm_privatbankrates')->__('API returned error %s: %s', $response['status'], $response['description']);
-            } elseif (array_key_exists('base', $response) && array_key_exists('rates', $response)) {
-                $this->_rates = $response['rates'];
+            } elseif (array_key_exists('base_ccy', $response[0])) {
+                $rates = array();
+
+                $rates['UAH'] = array(
+                    'buy' => 1,
+                    'sale' => 1
+                );
+
+                foreach ((array) $response as $currency) {
+                    $rates[$currency['ccy']] = $currency;
+                }
+
+                $this->_rates = $rates;
 
             } else {
                 Mage::log('Privatbankrates API request: %s', $url);
@@ -101,7 +103,12 @@ class Printminion_Privatbankrates_Model_Currency_Import_Privatbankrates extends 
 
         if (array_key_exists($currencyFrom, $this->_rates) && array_key_exists($currencyTo, $this->_rates)) {
             // convert via base currency, whatever it is.
-            $rate = (float)($this->_rates[$currencyTo] * (1 / $this->_rates[$currencyFrom]));
+            if ($currencyTo == 'UAH') {
+                $rate = (float)$this->_rates[$currencyFrom]['sale'];
+            } else {
+                $rate = (float)$this->_rates[$currencyTo]['buy'] / (float)$this->_rates[$currencyFrom]['sale'];
+            }
+
         } else {
             $this->_messages[] = Mage::helper('pm_privatbankrates')->__('Can\'t convert from ' . $currencyFrom . ' to ' . $currencyTo . '. Rate doesn\'t exist.');
         }

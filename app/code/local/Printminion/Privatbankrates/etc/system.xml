@@ -11,7 +11,7 @@
     <sections>
         <currency translate="label" module="pm_privatbankrates">
             <groups>
-                <pm_privatbankrates translate="label"
+                <pm_privatbankrates translate="label">
                     <label>Privatbankrates</label>
                     <sort_order>42</sort_order>
                     <show_in_default>1</show_in_default>
@@ -28,16 +28,6 @@
                             <show_in_store>0</show_in_store>
                             <comment><![CDATA[Enable or disable extension.]]></comment>
                         </enable>
-                        <app_id translate="label comment">
-                            <label>Privatbankrates App Id</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>0</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
-                            <comment>
-                                <![CDATA[Get your App Id at <a href="https://api.privatbank.ua/api-privat24/p24registration.html</a>]]></comment>
-                        </app_id>
                         <timeout translate="label">
                             <label>Connection Timeout in Seconds</label>
                             <frontend_type>text</frontend_type>
