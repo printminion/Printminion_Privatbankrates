@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    Printminion
+* @package     Printminion_Privatbankrates
+* @copyright   Copyright (c) 2015 Printminion
+* @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+*/
+-->
+<config>
+    <sections>
+        <currency translate="label" module="pm_privatbankrates">
+            <groups>
+                <pm_privatbankrates translate="label"
+                    <label>Privatbankrates</label>
+                    <sort_order>42</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enable translate="label,comment">
+                            <label>Enable Privatbankrates</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Enable or disable extension.]]></comment>
+                        </enable>
+                        <app_id translate="label comment">
+                            <label>Privatbankrates App Id</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>
+                                <![CDATA[Get your App Id at <a href="https://api.privatbank.ua/api-privat24/p24registration.html</a>]]></comment>
+                        </app_id>
+                        <timeout translate="label">
+                            <label>Connection Timeout in Seconds</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </timeout>
+                    </fields>
+                </pm_privatbankrates>
+            </groups>
+        </currency>
+    </sections>
+</config>

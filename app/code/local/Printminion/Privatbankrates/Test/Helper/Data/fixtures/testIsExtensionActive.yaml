@@ -1,0 +1,2 @@
+config:
+  default/currency/pm_privatbankrates/enable: 1

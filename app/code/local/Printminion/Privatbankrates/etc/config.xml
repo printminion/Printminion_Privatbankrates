@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    Printminion
+* @package     Printminion_Privatbankrates
+* @copyright   Copyright (c) 2015 Printminion
+* @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+*/
+-->
+<config>
+    <modules>
+        <Printminion_Privatbankrates>
+            <version>1.0.1</version>
+        </Printminion_Privatbankrates>
+    </modules>
+    <global>
+        <currency>
+            <import>
+                <services>
+                    <privatbankrates>
+                        <name>Privatbankrates</name>
+                        <model>pm_privatbankrates/currency_import_privatbankrates</model>
+                    </privatbankrates>
+                </services>
+            </import>
+        </currency>
+        <helpers>
+            <pm_privatbankrates>
+                <class>Printminion_Privatbankrates_Helper</class>
+            </pm_privatbankrates>
+        </helpers>
+        <models>
+            <pm_privatbankrates>
+                <class>Printminion_Privatbankrates_Model</class>
+            </pm_privatbankrates>
+        </models>
+    </global>
+    <default>
+        <currency>
+            <pm_privatbankrates>
+                <enable>0</enable>
+                <timeout>100</timeout>
+            </pm_privatbankrates>
+        </currency>
+    </default>
+    <phpunit>
+        <suite>
+            <modules>
+                <Printminion_Privatbankrates/>
+            </modules>
+        </suite>
+    </phpunit>
+</config>
